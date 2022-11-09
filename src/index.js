@@ -7,7 +7,7 @@ var cr = () => {};
 // Create a tagged template crlf`...` that formats text using CRLF line endings.
 var crlf = () => {};
 
-let transformLineEnding = (string, lineEnding) => {
+const transformLineEnding = (string, lineEnding) => {
   string = (string != null ? string.toString() : "");
   const {replaceCR, replaceCRLF, replaceLF} =  LineEndingReplacements
   if (lineEnding === LineEndings.CR) {
@@ -23,13 +23,13 @@ let transformLineEnding = (string, lineEnding) => {
   return string;
 };
 
-let LineEndings = {
+const LineEndings = {
   CR: Symbol("CR"),
   LF: Symbol("LF"),
   CRLF: Symbol("CRLF")
 };
 
-let LineEndingReplacements = {
+const LineEndingReplacements = {
   replaceCR: (string, newEnding) =>
     string.replace(/(\r+)([^\n]|$)/g, (_match, p1, p2) => {
       return `${newEnding.repeat(p1.length)}${p2}`;
